@@ -2,7 +2,7 @@ package Clases;
 
 public class Usuario {
    private String login;
-   private String password;
+   private String clave;
    private String rol_trabajador;
    private Trabajador trabajador;
 
@@ -11,7 +11,7 @@ public class Usuario {
 
     public Usuario(String login, String clave, String rol, Trabajador trabajador) {
         this.login = login;
-        this.password = password;
+        this.clave = clave;
         this.rol_trabajador = rol_trabajador;
         this.trabajador = trabajador;
     }
@@ -24,12 +24,12 @@ public class Usuario {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    public String getClave() {
+        return clave;
     }
 
-    public void setPassword(String clave) {
-        this.password = password;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getRol_trabajador() {

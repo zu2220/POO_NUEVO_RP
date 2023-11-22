@@ -22,7 +22,7 @@ public class UsuarioDao implements IUsuario{
                    query += " VALUES(?,?,?,?)";
             PreparedStatement  stmt = DataSource().prepareStatement(query);
             stmt.setString(1, obj.getLogin());
-            stmt.setString(2, obj.getPassword());
+            stmt.setString(2, obj.getClave());
             stmt.setString(3, obj.getRol_trabajador());
             stmt.setString(4, obj.getTrabajador().getCodigo());
             flag = stmt.execute();
@@ -47,14 +47,11 @@ public class UsuarioDao implements IUsuario{
          ArrayList<Usuario> data = new ArrayList<>();
         //Conexion BD
         try{
-            
-            
             String query = "SELECT tt.nombre_trabajador, tt.apellido_trabajador, uu.login, uu.rol_trabajador, uu.codigo_trabajador ";
                    query += "FROM Usuario uu ";
                    query += "inner join Trabajadot tt on uu.codigo_trabajador = tt.codigo_trabajador ";
             Statement  stmt = DataSource().createStatement();       
             ResultSet rs = stmt.executeQuery(query);
-            
             
             //Recuperacion de registros
             while(rs.next()){
