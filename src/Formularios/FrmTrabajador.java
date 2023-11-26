@@ -6,17 +6,31 @@ package Formularios;
 
 import Clases.Cargo;
 import Clases.Trabajador;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class FrmTrabajador extends javax.swing.JFrame {
-    private DefaultTableModel dtm;
-    private Object[] o=new Object[8];
+    /*private DefaultTableModel dtm;
+    private Object[] o=new Object[8];*/
 
     /**
      * Creates new form FrmTrabajador
      */
     public FrmTrabajador() {
+        /*initComponents();
+        dtm= (DefaultTableModel) jTtrabajadores.getModel();+*/
         initComponents();
-        dtm= (DefaultTableModel) jTtrabajadores.getModel();
+        this.jTtrabajadores.setModel(modelo);
+        this.modelo.addColumn("Codigo de trabajador");
+        this.modelo.addColumn("Nombre");
+        this.modelo.addColumn("Apellidos");
+        this.modelo.addColumn("Tipo de Documento");
+        this.modelo.addColumn("Sexo");
+        this.modelo.addColumn("Direccion");
+        this.modelo.addColumn("Nombre de Cargo");
+        this.modelo.addColumn("Tipo de Cargo");
+        
+        
+        
     }
 
     /**
@@ -28,7 +42,7 @@ public class FrmTrabajador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane = new javax.swing.JTabbedPane();
+        jtbListaTrabajadores = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTtrabajadores = new javax.swing.JTable();
@@ -53,7 +67,6 @@ public class FrmTrabajador extends javax.swing.JFrame {
         cbxSexo = new javax.swing.JComboBox<>();
         tfDireccion = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         cbxNombreCargo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -62,14 +75,11 @@ public class FrmTrabajador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTtrabajadores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Nombre", "Apellido", "Tipo de Documento", "Sexo", "Direccion", "Nombre Cargo", "Tipo Cargo"
+        jTtrabajadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTtrabajadoresMouseClicked(evt);
             }
-        ));
+        });
         jScrollPane1.setViewportView(jTtrabajadores);
 
         jLabel1.setText("Búsqueda:");
@@ -87,9 +97,19 @@ public class FrmTrabajador extends javax.swing.JFrame {
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/to_do_list_cheked_all.png"))); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancel.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,7 +152,7 @@ public class FrmTrabajador extends javax.swing.JFrame {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jTabbedPane.addTab("Listado de trabajadores", jPanel1);
+        jtbListaTrabajadores.addTab("Listado de trabajadores", jPanel1);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -153,6 +173,12 @@ public class FrmTrabajador extends javax.swing.JFrame {
 
         jLabel7.setText("Direccion:");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
+
+        tfCodigoTrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCodigoTrabajadorActionPerformed(evt);
+            }
+        });
         jPanel3.add(tfCodigoTrabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 124, -1));
 
         cbxTipodeDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DNI", "Carnet de Extranjeria", "RUC", " " }));
@@ -177,15 +203,6 @@ public class FrmTrabajador extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 100, 30));
-
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancel.png"))); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 100, 30));
 
         jLabel8.setText("Nombre de Cargo:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, 30));
@@ -220,39 +237,46 @@ public class FrmTrabajador extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane.addTab("Registro de trabajadores", jPanel2);
+        jtbListaTrabajadores.addTab("Registro de trabajadores", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jtbListaTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jtbListaTrabajadores, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    DefaultTableModel modelo = new DefaultTableModel();
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        
+
+        //LIMPIAR
+        tfCodigoTrabajador.setText("");
+        cbxTipodeDocumento.setSelectedIndex(0);
+        cbxSexo.setSelectedIndex(0);
+        tfNombre.setText("");
+        tfApellidos.setText("");
+        tfDireccion.setText("");
+        cbxNombreCargo.setSelectedIndex(0);
+        cbxTipoCargo.setSelectedIndex(0);
+        tfCodigoTrabajador.grabFocus();
+      
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void cbxTipodeDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipodeDocumentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipodeDocumentoActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        Limpiar();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        String codT=tfCodigoTrabajador.getText();
+        /*String codT=tfCodigoTrabajador.getText();
         String tipoDocumento=cbxTipodeDocumento.getSelectedItem().toString();
         String sexo=cbxSexo.getSelectedItem().toString();
         String nombre=tfNombre.getText();
@@ -272,8 +296,89 @@ public class FrmTrabajador extends javax.swing.JFrame {
         o[5]=direccion;
         o[6]=nomCargo;
         o[7]=tipoCargo;
-        dtm.addRow(o);
+        dtm.addRow(o);*/
+        
+        this.modelo.addRow(new Object[]{
+            this.tfCodigoTrabajador.getText(),
+            this.tfNombre.getText(),
+            this.tfApellidos.getText(),
+            this.cbxTipodeDocumento.getSelectedItem(),
+            this.cbxSexo.getSelectedItem(),
+            this.tfDireccion.getText(),
+            this.cbxNombreCargo.getSelectedItem(),
+            this.cbxTipoCargo.getSelectedItem()
+        
+        });
+        
+        //GUARDADO
+        JOptionPane.showMessageDialog(this, "El trabajador se ha registrado correctamente.");
+        //VALIDAR INGRESO DE DATOS
+
+        //LIMPIAR
+        tfCodigoTrabajador.setText("");
+        cbxTipodeDocumento.setSelectedIndex(0);
+        cbxSexo.setSelectedIndex(0);
+        tfNombre.setText("");
+        tfApellidos.setText("");
+        tfDireccion.setText("");
+        cbxNombreCargo.setSelectedIndex(0);
+        cbxTipoCargo.setSelectedIndex(0);
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
+        int filas;
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        String []datos=new String[8];
+        datos[0]=tfCodigoTrabajador.getText();
+        datos[1]=tfNombre.getText();
+        datos[2]=tfApellidos.getText();
+        datos[3]=this.cbxTipodeDocumento.getSelectedItem().toString();
+        datos[4]=this.cbxSexo.getSelectedItem().toString();
+        datos[5]=tfDireccion.getText();
+        datos[6]=this.cbxNombreCargo.getSelectedItem().toString();
+        datos[7]=this.cbxTipoCargo.getSelectedItem().toString();
+        
+        for(int i=0; i<jTtrabajadores.getColumnCount();i++){
+            modelo.setValueAt(datos[i], filas, i);
+        }
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila_seleccionada = jTtrabajadores.getSelectedRow();
+        if(fila_seleccionada>=0){
+            modelo.removeRow(fila_seleccionada);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila por favor");
+        }
+        
+        //LIMPIAR
+        tfCodigoTrabajador.setText("");
+        cbxTipodeDocumento.setSelectedIndex(0);
+        cbxSexo.setSelectedIndex(0);
+        tfNombre.setText("");
+        tfApellidos.setText("");
+        tfDireccion.setText("");
+        cbxNombreCargo.setSelectedIndex(0);
+        cbxTipoCargo.setSelectedIndex(0);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jTtrabajadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTtrabajadoresMouseClicked
+        int fila_seleccionada = jTtrabajadores.getSelectedRow();
+        tfCodigoTrabajador.setText(jTtrabajadores.getValueAt(fila_seleccionada, 0).toString());
+        tfNombre.setText(jTtrabajadores.getValueAt(fila_seleccionada, 1).toString());
+        tfApellidos.setText(jTtrabajadores.getValueAt(fila_seleccionada, 2).toString());
+        cbxTipodeDocumento.setSelectedItem(jTtrabajadores.getValueAt(fila_seleccionada, 3).toString());
+        cbxSexo.setSelectedItem(jTtrabajadores.getValueAt(fila_seleccionada, 4).toString());
+        tfDireccion.setText(jTtrabajadores.getValueAt(fila_seleccionada, 5).toString());
+        cbxNombreCargo.setSelectedItem(jTtrabajadores.getValueAt(fila_seleccionada, 6).toString());
+        cbxTipoCargo.setSelectedItem(jTtrabajadores.getValueAt(fila_seleccionada, 7).toString());
+        filas=fila_seleccionada;
+    
+    }//GEN-LAST:event_jTtrabajadoresMouseClicked
+
+    private void tfCodigoTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoTrabajadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCodigoTrabajadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,22 +415,12 @@ public class FrmTrabajador extends javax.swing.JFrame {
         });
     }
     
-    private void Limpiar() {
-        tfCodigoTrabajador.setText("");
-        cbxTipodeDocumento.setSelectedIndex(0);
-        cbxSexo.setSelectedIndex(0);
-        tfNombre.setText("");
-        tfApellidos.setText("");
-        tfDireccion.setText("");
-        cbxNombreCargo.setSelectedIndex(0);
-        cbxTipoCargo.setSelectedIndex(0);
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cbxNombreCargo;
     private javax.swing.JComboBox<String> cbxSexo;
@@ -345,8 +440,8 @@ public class FrmTrabajador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTable jTtrabajadores;
+    private javax.swing.JTabbedPane jtbListaTrabajadores;
     private javax.swing.JTextField tfApellidos;
     private javax.swing.JTextField tfCodigoTrabajador;
     private javax.swing.JTextField tfDireccion;

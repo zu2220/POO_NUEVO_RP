@@ -45,16 +45,16 @@ public class FrmRealizarRendicionCuentas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Rendición de Cuentas"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rendición de Cuentas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Código Solicitud Viático:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
-        jPanel1.add(tfSolicitudV, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 215, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        jPanel1.add(tfSolicitudV, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 220, -1));
 
         jLabel2.setText("Código DAG:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 80, -1));
-        jPanel1.add(tfCodigoDAG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 215, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 80, -1));
+        jPanel1.add(tfCodigoDAG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 220, 20));
 
         jTRealizarRC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -66,28 +66,31 @@ public class FrmRealizarRendicionCuentas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTRealizarRC);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 760, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 680, 300));
 
+        btnAgregarDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/page_white_add.png"))); // NOI18N
         btnAgregarDoc.setText("Agregar Documento");
-        jPanel1.add(btnAgregarDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 160, 40));
+        jPanel1.add(btnAgregarDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 160, 30));
 
+        btnEliminarDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancel.png"))); // NOI18N
         btnEliminarDoc.setText("Eliminar Documento");
-        jPanel1.add(btnEliminarDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 160, 40));
+        jPanel1.add(btnEliminarDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 160, 30));
 
         jLabel3.setText("Tipo Documento:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
-        jPanel1.add(tfTipoDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 220, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+        jPanel1.add(tfTipoDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 220, -1));
 
         jLabel4.setText("Fecha Gasto:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
-        jPanel1.add(tfFechaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 220, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+        jPanel1.add(tfFechaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 220, -1));
 
         jLabel5.setText("Monto Gasto:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
-        jPanel1.add(tfMontoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 220, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+        jPanel1.add(tfMontoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 220, -1));
 
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/to_do_list_cheked_all.png"))); // NOI18N
         btnListar.setText("Listar");
-        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 240, 100, 30));
+        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

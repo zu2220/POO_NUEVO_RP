@@ -6,10 +6,16 @@
 
 package EstructuraDeDatos;
 
+import Clases.DocumentoAcreditadorGasto;
+
 /**
  *
  * @author BIB-USR-CHIM
  */
 public class ArregloDocumentoAcreditadorGasto {
+
+    public void addDocumentoAcreditadorGasto(DocumentoAcreditadorGasto documentoAcreditadorGasto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

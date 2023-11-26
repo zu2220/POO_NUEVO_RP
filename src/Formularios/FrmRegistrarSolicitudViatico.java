@@ -9,6 +9,7 @@ package Formularios;
 import Clases.SolicitudViatico;
 import Clases.Viatico;
 import EstructuraDeDatos.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import javax.swing.table.TableRowSorter;
@@ -172,36 +173,36 @@ public class FrmRegistrarSolicitudViatico extends javax.swing.JFrame {
         TablaSV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Codigo de solicitud:");
-        TablaSV.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+        TablaSV.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
 
         jLabel3.setText("Codigo de Remitente:");
-        TablaSV.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+        TablaSV.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
         jLabel4.setText("Fecha de Ida:");
-        TablaSV.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, -1, -1));
+        TablaSV.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, -1, -1));
 
         jLabel5.setText("Fecha de Retorno:");
-        TablaSV.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, -1));
+        TablaSV.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
 
         jLabel6.setText("Tipo de Viaje:");
-        TablaSV.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 80, -1));
+        TablaSV.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 80, -1));
 
         jLabel7.setText("Monto de Viatico:");
-        TablaSV.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 100, -1));
+        TablaSV.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 100, -1));
 
         tfCodigoSolicitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCodigoSolicitudActionPerformed(evt);
             }
         });
-        TablaSV.add(tfCodigoSolicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 120, -1));
-        TablaSV.add(tfCodigoRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 120, -1));
-        TablaSV.add(tfFechaIda, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 120, -1));
-        TablaSV.add(tfFechaRetorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 110, -1));
-        TablaSV.add(tfMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 110, -1));
+        TablaSV.add(tfCodigoSolicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, -1));
+        TablaSV.add(tfCodigoRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 120, -1));
+        TablaSV.add(tfFechaIda, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 120, -1));
+        TablaSV.add(tfFechaRetorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 110, -1));
+        TablaSV.add(tfMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 110, -1));
 
         cbxTipoViaje.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Local", "Nacional", "Internacional", " " }));
-        TablaSV.add(cbxTipoViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 120, -1));
+        TablaSV.add(cbxTipoViaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 120, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/save_as.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -210,7 +211,7 @@ public class FrmRegistrarSolicitudViatico extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        TablaSV.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 130, 40));
+        TablaSV.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 130, 40));
 
         btnLimpiarSolicitud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancel.png"))); // NOI18N
         btnLimpiarSolicitud.setText("Limpiar");
@@ -219,21 +220,21 @@ public class FrmRegistrarSolicitudViatico extends javax.swing.JFrame {
                 btnLimpiarSolicitudActionPerformed(evt);
             }
         });
-        TablaSV.add(btnLimpiarSolicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 120, 40));
+        TablaSV.add(btnLimpiarSolicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 120, 40));
 
         jLabel8.setFont(new java.awt.Font("Nirmala UI", 1, 36)); // NOI18N
         jLabel8.setText("SOLICITUD DE VIATICO");
-        TablaSV.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 410, -1));
+        TablaSV.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 410, -1));
 
         jLabel9.setText("Fecha de envio de la solicitud:");
-        TablaSV.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
+        TablaSV.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         tfFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfFechaActionPerformed(evt);
             }
         });
-        TablaSV.add(tfFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, -1));
+        TablaSV.add(tfFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 120, -1));
 
         jTabbedPane4.addTab("Registro de Solicitud", TablaSV);
 
@@ -264,7 +265,7 @@ public class FrmRegistrarSolicitudViatico extends javax.swing.JFrame {
      
        CrearArregloSV();
         
-        
+       JOptionPane.showMessageDialog(this, "La solicitud de Viatico se ha registrado existosamente.");
         
       
     }//GEN-LAST:event_btnGuardarActionPerformed

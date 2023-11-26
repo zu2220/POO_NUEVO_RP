@@ -14,6 +14,14 @@ public class Trabajador {
     public Trabajador() {
     }
 
+    public Trabajador(String codigo, String nombre, String apellido) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+    
+    
+
     public Trabajador(String codigo, String nombre, String apellido, String tipoDocumento, String sexo, String direccion, Cargo cargo) {
         this.codigo = codigo;
         this.nombre = nombre;

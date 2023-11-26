@@ -5,6 +5,7 @@
 package Formularios;
 
 import Clases.Viatico;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,14 +13,21 @@ import javax.swing.table.DefaultTableModel;
  * @author EDWIN
  */
 public class FrmDepositarViatico extends javax.swing.JFrame {
-    private DefaultTableModel dtm;
-    private Object[] o=new Object[4];
+    /*private DefaultTableModel dtm;
+    private Object[] o=new Object[4];*/
     /**
      * Creates new form FrmDepositarViatico
      */
     public FrmDepositarViatico() {
+        /*initComponents();
+        dtm= (DefaultTableModel) jMovimientos.getModel();*/
         initComponents();
-        dtm= (DefaultTableModel) jMovimientos.getModel();
+        this.jMovimientos.setModel(modelo);
+        this.modelo.addColumn("Codigo de tesorero");
+        this.modelo.addColumn("Codigo Destinatario");
+        this.modelo.addColumn("Codigo Solicitud de Viatico");
+        this.modelo.addColumn("Monto");
+
     }
 
     /**
@@ -39,9 +47,8 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
         tfCodigoTesorero = new javax.swing.JTextField();
         tfCodigoDestinatario = new javax.swing.JTextField();
         tfCodigoSolicitud = new javax.swing.JTextField();
-        tfMontoDeposisto = new javax.swing.JTextField();
+        tfMontoDeposito = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jMovimientos = new javax.swing.JTable();
@@ -68,10 +75,16 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
 
         jLabel4.setText("Codigo Destinatario:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
+
+        tfCodigoTesorero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCodigoTesoreroActionPerformed(evt);
+            }
+        });
         jPanel1.add(tfCodigoTesorero, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 150, -1));
         jPanel1.add(tfCodigoDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 150, -1));
         jPanel1.add(tfCodigoSolicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 150, -1));
-        jPanel1.add(tfMontoDeposisto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 150, -1));
+        jPanel1.add(tfMontoDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 150, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/save_as.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -82,26 +95,14 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
         });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, -1, -1));
 
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancel.png"))); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 90, -1));
-
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Movimientos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jMovimientos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo de Tesorero", "Codigo Destinatario", "Codigo Solicitud ", "Monto"
+        jMovimientos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMovimientosMouseClicked(evt);
             }
-        ));
+        });
         jScrollPane1.setViewportView(jMovimientos);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 83, 625, 284));
@@ -112,18 +113,38 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
 
         btnEditarDeposito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/layer_edit.png"))); // NOI18N
         btnEditarDeposito.setText("Editar");
+        btnEditarDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarDepositoActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnEditarDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, -1));
 
         btnEliminarDeposito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancel.png"))); // NOI18N
         btnEliminarDeposito.setText("Eliminar");
+        btnEliminarDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDepositoActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnEliminarDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
 
         btnBuscarDeposito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/find.png"))); // NOI18N
         btnBuscarDeposito.setText("Buscar");
+        btnBuscarDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarDepositoActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnBuscarDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
         btnNuevoDeposito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pencil_add.png"))); // NOI18N
         btnNuevoDeposito.setText("Nuevo");
+        btnNuevoDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoDepositoActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnNuevoDeposito, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,7 +156,7 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,13 +170,9 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        Limpiar();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    DefaultTableModel modelo = new DefaultTableModel();
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        String codTe=tfCodigoTesorero.getText();
+        /*String codTe=tfCodigoTesorero.getText();
         String codDesti=tfCodigoDestinatario.getText();
         String codSoli=tfCodigoSolicitud.getText();
         Viatico monto=new Viatico();
@@ -165,8 +182,76 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
         o[1]=codDesti;
         o[2]=codSoli;
         o[3]=monto.getMontoViatico();
-        dtm.addRow(o);
+        dtm.addRow(o);*/
+        
+        this.modelo.addRow(new Object[]{
+            this.tfCodigoTesorero.getText(),
+            this.tfCodigoDestinatario.getText(),
+            this.tfCodigoSolicitud.getText(),
+            this.tfMontoDeposito.getText(),
+        });
+    
+        JOptionPane.showMessageDialog(this, "El deposito de viatico se ha realizado correctamente.");
+        //LIMPIAR
+        tfCodigoTesorero.setText("");
+        tfCodigoDestinatario.setText("");
+        tfCodigoSolicitud.setText("");
+        tfMontoDeposito.setText("");
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
+    int filas;
+    private void tfCodigoTesoreroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoTesoreroActionPerformed
+        
+        
+    }//GEN-LAST:event_tfCodigoTesoreroActionPerformed
+
+    private void btnEditarDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDepositoActionPerformed
+        String []datos=new String[4];
+        datos[0]=tfCodigoTesorero.getText();
+        datos[1]=tfCodigoDestinatario.getText();
+        datos[2]=tfCodigoSolicitud.getText();
+        datos[3]=tfMontoDeposito.getText();
+        
+        for(int i=0; i<jMovimientos.getColumnCount();i++){
+            modelo.setValueAt(datos[i], filas, i);
+        }
+    }//GEN-LAST:event_btnEditarDepositoActionPerformed
+
+    private void btnNuevoDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoDepositoActionPerformed
+        
+        
+        //LIMPIAR
+        tfCodigoTesorero.setText("");
+        tfCodigoDestinatario.setText("");
+        tfCodigoSolicitud.setText("");
+        tfMontoDeposito.setText("");
+    }//GEN-LAST:event_btnNuevoDepositoActionPerformed
+
+    private void btnEliminarDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDepositoActionPerformed
+        int fila_seleccionada = jMovimientos.getSelectedRow();
+        if(fila_seleccionada>=0){
+            modelo.removeRow(fila_seleccionada);
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila por favor");
+        }
+        tfCodigoTesorero.setText("");
+        tfCodigoDestinatario.setText("");
+        tfCodigoSolicitud.setText("");
+        tfMontoDeposito.setText("");
+    }//GEN-LAST:event_btnEliminarDepositoActionPerformed
+
+    private void jMovimientosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMovimientosMouseClicked
+        int fila_seleccionada = jMovimientos.getSelectedRow();
+        tfCodigoTesorero.setText(jMovimientos.getValueAt(fila_seleccionada, 0).toString());
+        tfCodigoDestinatario.setText(jMovimientos.getValueAt(fila_seleccionada, 1).toString());
+        tfCodigoSolicitud.setText(jMovimientos.getValueAt(fila_seleccionada, 2).toString());
+        tfMontoDeposito.setText(jMovimientos.getValueAt(fila_seleccionada, 3).toString()); 
+        filas=fila_seleccionada;
+    }//GEN-LAST:event_jMovimientosMouseClicked
+
+    private void btnBuscarDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDepositoActionPerformed
+        
+    }//GEN-LAST:event_btnBuscarDepositoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,7 +291,7 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
         tfCodigoTesorero.setText("");
         tfCodigoDestinatario.setText("");
         tfCodigoSolicitud.setText("");
-        tfMontoDeposisto.setText("");
+        tfMontoDeposito.setText("");
     }
         
 
@@ -215,7 +300,6 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarDeposito;
     private javax.swing.JButton btnEliminarDeposito;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnNuevoDeposito;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -230,6 +314,6 @@ public class FrmDepositarViatico extends javax.swing.JFrame {
     private javax.swing.JTextField tfCodigoDestinatario;
     private javax.swing.JTextField tfCodigoSolicitud;
     private javax.swing.JTextField tfCodigoTesorero;
-    private javax.swing.JTextField tfMontoDeposisto;
+    private javax.swing.JTextField tfMontoDeposito;
     // End of variables declaration//GEN-END:variables
 }

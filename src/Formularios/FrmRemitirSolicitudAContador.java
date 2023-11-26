@@ -4,6 +4,7 @@
  */
 package Formularios;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -153,6 +154,8 @@ public class FrmRemitirSolicitudAContador extends javax.swing.JFrame {
         o[1]=codSo;
         o[2]=codCo;
         dtm.addRow(o);
+        
+        JOptionPane.showMessageDialog(this, "La solicitud se ha enviado correctamente.");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

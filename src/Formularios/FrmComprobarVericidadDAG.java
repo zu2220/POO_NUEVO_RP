@@ -39,7 +39,7 @@ public class FrmComprobarVericidadDAG extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Comprobar Vercidad de Documentos Acreditadores de Gasto"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Comprobar Vercidad de Documentos Acreditadores de Gasto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Codigo Trabajador");
@@ -74,17 +74,23 @@ public class FrmComprobarVericidadDAG extends javax.swing.JFrame {
 
         jLabel2.setText("Documento Real:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
-        jPanel1.add(tfDocumentoR, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 190, 20));
+
+        tfDocumentoR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDocumentoRActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tfDocumentoR, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
 
         pack();
@@ -93,6 +99,10 @@ public class FrmComprobarVericidadDAG extends javax.swing.JFrame {
     private void btnListarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDatosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarDatosActionPerformed
+
+    private void tfDocumentoRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDocumentoRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfDocumentoRActionPerformed
 
     /**
      * @param args the command line arguments

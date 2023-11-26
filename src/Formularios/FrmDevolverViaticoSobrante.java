@@ -5,6 +5,7 @@
 package Formularios;
 
 import Clases.Viatico;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmDevolverViaticoSobrante extends javax.swing.JFrame {
@@ -174,6 +175,8 @@ public class FrmDevolverViaticoSobrante extends javax.swing.JFrame {
         o[3]=monto.getMontoViatico();
         o[4]=devTeso;
         dtm.addRow(o);
+        
+        JOptionPane.showMessageDialog(this, "La devolucion se ha realizado correctamente.");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
